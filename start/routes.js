@@ -22,3 +22,4 @@ Route.get("/verify-email/:token", "UserController.verifyEmail");
 Route.post("/sendPdf", "UserController.sendPdf");
 
 Route.get("/list-pdfs", "UserController.listPdfs");
+Route.post("/marcar", "AppointmentController.store");

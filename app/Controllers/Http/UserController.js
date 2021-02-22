@@ -4,6 +4,7 @@ const Drive = use("Drive");
 var uuid = require("uuid-random");
 const Env = use("Env");
 const Minio = require("minio");
+const File = use("App/Models/File");
 
 class UserController {
   async register({ request, auth, response }) {
@@ -20,10 +21,10 @@ class UserController {
     await response.send(user);
   }
   async login({ request, auth, response }) {
-    const payload = request.only(["uid", "password"]);
-    const user = await Persona.verify(payload);
+    const { email, password } = await request.all();
+    const user = await auth.attempt(email, password);
 
-    await auth.login(user);
+    await response.send(user);
   }
   async verifyEmail({ params, response }) {
     console.log(params.token);
@@ -32,26 +33,40 @@ class UserController {
     response.send({ message: "Email verified" });
   }
 
-  async sendPdf({ request, response }) {
+  async sendPdf({ request, response, auth }) {
     const dir = __dirname;
+    const { id } = await auth.getUser();
+
     //const isExists = await Drive.disk("minio").put("/test1.jpg");
     const file = await request.file("file", {
       types: ["pdf"],
       size: "15mb",
     });
+
     const name = file.clientName;
     const ext = file.extname;
     const uid = uuid();
-    const mail = await request.multipart.mail;
+    const mail = request.multipart.mail;
 
     const fileName = `${name}-${uid}-${mail}.${ext}`;
+    console.log(fileName);
     const tmpPath = await file.tmpPath;
-    //response.send(tmpPath);
-    // const url = await Drive.disk("minio").put(tmpPath, name);
-    const downloadable = await Drive.disk("minio").put(tmpPath, fileName);
-    const url = await Drive.disk("minio").getSignedUrl(fileName, 3600);
-    return url;
-    //response.send(file);
+    console.log(file.tmpPath);
+
+    var filepath = file.tmpPath;
+    const url = await Drive.disk("minio").put(file.tmpPath, fileName);
+    console.log(url);
+    var create = await File.create({
+      user_id: id,
+      url: url,
+      reviewed: false,
+      answer: "none",
+    });
+    //const downloadable = await Drive.disk("minio").put(tmpPath, fileName);
+    //console.log(downloadable);
+    //const url = await Drive.disk("minio").getSignedUrl(fileName, 3600);
+    //return url;
+    // response.send(url);
     //return isExists;
   }
   async listPdfs({ request, response }) {
@@ -87,3 +102,5 @@ class UserController {
 }
 
 module.exports = UserController;
+
+/// http://rh.codandosonhos.com:9000/minio/download/my-bucket/oi.pdf?token=
