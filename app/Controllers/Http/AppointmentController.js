@@ -5,14 +5,14 @@ const moment = require("moment");
 
 class AppointmentController {
   async store({ request, response, auth }) {
-    const { id } = await auth.getUser();
+    const { plan_id } = request.all();
 
     const { hour, title } = request.all();
 
     const createAppointment = async () =>
       await Appointment.create({
         title,
-        user_id: id,
+        plan_id,
         hour: new Date(hour),
       });
 

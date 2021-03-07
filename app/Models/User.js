@@ -34,11 +34,8 @@ class User extends Model {
   tokens() {
     return this.hasMany("App/Models/Token");
   }
-  files() {
-    return this.hasMany("App/Models/File");
-  }
-  appointments() {
-    return this.hasMany("App/Models/Appointment");
+  plans() {
+    return this.hasMany("App/Models/Plan");
   }
 }
 

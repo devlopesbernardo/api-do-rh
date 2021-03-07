@@ -7,10 +7,9 @@ class FileSchema extends Schema {
   up() {
     this.create("files", (table) => {
       table.increments();
-      table.string("user_id").notNullable();
-      table.string("url").notNullable();
-      table.boolean("reviewed").notNullable();
-      table.string("answer").notNullable();
+      table.integer("plan_id").notNullable();
+      table.string("user_url").notNullable();
+      table.string("feedback_url").notNullable();
       table.timestamps();
     });
   }

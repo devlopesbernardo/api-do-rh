@@ -15,11 +15,17 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
+//old-routes
 
+Route.post("/marcar", "AppointmentController.store");
+
+//new-routes
 Route.post("/user/register", "UserController.register");
 Route.post("/user/login", "UserController.login");
-Route.get("/verify-email/:token", "UserController.verifyEmail");
-Route.post("/sendPdf", "UserController.sendPdf");
 
-Route.get("/list-pdfs", "UserController.listPdfs");
-Route.post("/marcar", "AppointmentController.store");
+Route.post("/file/envio-curriculo", "FileController.attachToPlan");
+
+Route.post("/plan/analise-curricular", "PlanController.createCurriculum");
+Route.get("/plan/listar-curriculos", "PlanController.listCurriculum");
+Route.get("/plan/listar-users", "PlanController.listUsersWithPlans");
+Route.get("/plan/user/:id", "PlanController.listSingleUserWithPlan");

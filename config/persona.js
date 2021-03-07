@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ module.exports = {
   | input
   |
   */
-  uids: ['email'],
+  uids: ["email"],
 
   /*
   |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ module.exports = {
   | The name of the email field inside the database and the user payload.
   |
   */
-  email: 'email',
+  email: "email",
 
   /*
   |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ module.exports = {
   | The password field to be used for verifying and storing user password
   |
   */
-  password: 'password',
+  password: "password",
 
   /*
   |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ module.exports = {
   | State of user when a new account is created
   |
   */
-  newAccountState: 'pending',
+  newAccountState: "active",
 
   /*
   |--------------------------------------------------------------------------
@@ -61,7 +61,7 @@ module.exports = {
   | State of user after they verify their email address
   |
   */
-  verifiedAccountState: 'active',
+  verifiedAccountState: "active",
 
   /*
   |--------------------------------------------------------------------------
@@ -71,7 +71,7 @@ module.exports = {
   | The model to be used for verifying and creating users
   |
   */
-  model: 'App/Models/User',
+  model: "App/Models/User",
 
   /*
   |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ module.exports = {
   | expiry of a token.
   |
   */
-  dateFormat: 'YYYY-MM-DD HH:mm:ss',
+  dateFormat: "YYYY-MM-DD HH:mm:ss",
 
   /*
   |--------------------------------------------------------------------------
@@ -93,6 +93,6 @@ module.exports = {
   |
   */
   validationMessages: () => {
-    return {}
-  }
-}
+    return {};
+  },
+};

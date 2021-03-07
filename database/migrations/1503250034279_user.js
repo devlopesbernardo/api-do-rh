@@ -9,9 +9,7 @@ class UserSchema extends Schema {
       table.increments();
       table.string("full_name", 80).notNullable();
       table.string("account_status", 80).notNullable();
-      table.string("area").notNullable();
       table.string("phone", 80).notNullable();
-      table.json("sent_files");
       table.json("payments");
       table.string("email", 254).notNullable().unique();
       table.string("password", 60).notNullable();
