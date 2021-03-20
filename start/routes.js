@@ -29,3 +29,5 @@ Route.post("/plan/analise-curricular", "PlanController.createCurriculum");
 Route.get("/plan/listar-curriculos", "PlanController.listCurriculum");
 Route.get("/plan/listar-users", "PlanController.listUsersWithPlans");
 Route.get("/plan/user/:id", "PlanController.listSingleUserWithPlan");
+
+Route.put("/plan/test/:plan_id", "FileController.editCurriculum");

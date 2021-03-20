@@ -1,10 +1,5 @@
 "use strict";
 const Persona = use("Persona");
-const Drive = use("Drive");
-var uuid = require("uuid-random");
-const Env = use("Env");
-const Minio = require("minio");
-const File = use("App/Models/File");
 
 class UserController {
   async register({ request, auth, response }) {
