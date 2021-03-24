@@ -1,5 +1,6 @@
 "use strict";
 const Persona = use("Persona");
+const User = use("App/Models/User");
 
 class UserController {
   async register({ request, auth, response }) {
@@ -34,6 +35,20 @@ class UserController {
     } catch (e) {
       console.log(e);
       response.send(e);
+    }
+  }
+
+  async listUserWithAll({ auth, response }) {
+    const user = await auth.getUser();
+    if (user) {
+      const data = await User.query()
+        .where("id", user.id)
+        .with("plans", (builder) => {
+          builder.with("files");
+        })
+        .fetch();
+
+      response.send(data);
     }
   }
 

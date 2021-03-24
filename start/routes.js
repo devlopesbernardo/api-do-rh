@@ -23,7 +23,7 @@ Route.post("/marcar", "AppointmentController.store");
 Route.post("/user/register", "UserController.register");
 Route.post("/user/login", "UserController.login");
 Route.post("/user/dados", "UserController.grabData");
-
+Route.get("/user/meus-planos", "UserController.listUserWithAll");
 Route.get("/", ({ request, response }) => {
   return "oi!";
 });
