@@ -17,9 +17,26 @@ class UserController {
   async login({ request, auth, response }) {
     const { email, password } = await request.all();
     const user = await auth.attempt(email, password);
-
     await response.send(user);
   }
+
+  async grabData({ request, auth, response }) {
+    const { token, oi } = await request.all();
+    // console.log(request);
+    console.log(token);
+    try {
+      const user = await auth.getUser(token);
+      await response.send({
+        name: user.full_name,
+        id: user.id,
+        email: user.email,
+      });
+    } catch (e) {
+      console.log(e);
+      response.send(e);
+    }
+  }
+
   async verifyEmail({ params, response }) {
     console.log(params.token);
     const user = await Persona.verifyEmail(params.token);

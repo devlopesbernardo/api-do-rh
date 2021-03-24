@@ -22,7 +22,11 @@ Route.post("/marcar", "AppointmentController.store");
 //new-routes
 Route.post("/user/register", "UserController.register");
 Route.post("/user/login", "UserController.login");
+Route.post("/user/dados", "UserController.grabData");
 
+Route.get("/", ({ request, response }) => {
+  return "oi!";
+});
 Route.post("/file/envio-curriculo", "FileController.attachToPlan");
 
 Route.post("/plan/analise-curricular", "PlanController.createCurriculum");
