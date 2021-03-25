@@ -31,10 +31,11 @@ class PlanController {
     const { id, links, user_comments } = request.all();
     if (user) {
       try {
-        const plan = await Plan.query().where("id", id);
+        const plan = await Plan.query().where("id", id).fetch();
         plan.links = links;
         plan.user_comments = user_comments;
         await plan.save();
+        return plan;
       } catch (e) {
         console.log(e);
       }
