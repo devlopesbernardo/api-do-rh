@@ -26,6 +26,21 @@ class PlanController {
     }
   }
 
+  async updatePlan({ request, response, auth }) {
+    const user = await auth.getUser();
+    const { id, links, user_comments } = request.all();
+    if (user) {
+      try {
+        const plan = await Plan.query().where("id", id);
+        plan.links = links;
+        plan.user_comments = user_comments;
+        await plan.save();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }
+
   async listUsersWithFiles({ request, response }) {
     const data = await User.query()
       .with(
