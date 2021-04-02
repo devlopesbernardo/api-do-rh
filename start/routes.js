@@ -18,7 +18,7 @@ const Route = use("Route");
 //old-routes
 
 Route.post("/marcar", "AppointmentController.store");
-Route.get("/datas", "AppointmentController.listGivenDay");
+Route.post("/datas", "AppointmentController.listGivenDay");
 
 //new-routes
 Route.post("/user/register", "UserController.register");
