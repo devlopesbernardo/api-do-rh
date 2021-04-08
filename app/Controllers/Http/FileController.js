@@ -10,7 +10,7 @@ class FileController {
     //id = plan_id
     const { id } = request.all();
     const uid = uuid();
-
+    console.log(id);
     const file = await request.file("file", {
       types: ["pdf"],
       size: "15mb",
