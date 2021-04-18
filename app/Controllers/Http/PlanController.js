@@ -2,6 +2,7 @@
 
 const Plan = use("App/Models/Plan");
 const User = use("App/Models/User");
+const Database = use("Database");
 
 class PlanController {
   async createCurriculum({ request, response, auth }) {
@@ -38,14 +39,12 @@ class PlanController {
     const { id, links, user_comments, file_name, pending } = request.all();
     if (user) {
       try {
-        const plan = await Plan.query()
-          .where("id", id)
-          .update({
-            links: links,
-            user_comments: user_comments,
-            file_name: file_name,
-            pending: pending
-          });
+        const plan = await Plan.query().where("id", id).update({
+          links: links,
+          user_comments: user_comments,
+          file_name: file_name,
+          pending: pending,
+        });
 
         return plan;
       } catch (e) {
@@ -85,6 +84,13 @@ class PlanController {
       })
       .fetch();
     return data;
+  }
+
+  async listPendingPlans({ request, response }) {
+    const plans = await Database.raw(
+      "select * from (select * from plans where pending = true) as planos INNER JOIN users on planos.user_id = users.id"
+    );
+    return plans;
   }
 }
 

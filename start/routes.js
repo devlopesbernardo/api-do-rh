@@ -35,5 +35,6 @@ Route.get("/plan/listar-curriculos", "PlanController.listCurriculum");
 Route.get("/plan/listar-users", "PlanController.listUsersWithPlans");
 Route.get("/plan/user/:id", "PlanController.listSingleUserWithPlan");
 Route.put("/plan/editar", "PlanController.updatePlan");
+Route.get("/plan/listar-pendentes", "PlanController.listPendingPlans");
 
 Route.put("/plan/test/:plan_id", "FileController.editCurriculum");
