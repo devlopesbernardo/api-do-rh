@@ -88,7 +88,7 @@ class PlanController {
 
   async listPendingPlans({ request, response }) {
     const plans = await Database.raw(
-      "select *, planos.id from (select * from plans where pending = true) as planos INNER JOIN users on planos.user_id = users.id"
+      "select * from (select *, planos.id as idd from (select * from plans where reviewed = false) as planos INNER JOIN users on planos.user_id = users.id) as resultados FULL OUTER JOIN files on resultados.idd = files.plan_id"
     );
     return plans;
   }
