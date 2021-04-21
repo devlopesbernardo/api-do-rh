@@ -19,6 +19,7 @@ const Route = use("Route");
 
 Route.post("/marcar", "AppointmentController.store");
 Route.post("/datas", "AppointmentController.listGivenDay");
+Route.get("/listar-datas", "AppointmentController.listAllDays");
 
 //new-routes
 Route.post("/user/register", "UserController.register");

@@ -55,6 +55,10 @@ class AppointmentController {
       return !usedHours.includes(e);
     });
   }
+  async listAllDays({ request, response }) {
+    const days = await Appointment.query().fetch();
+    return days;
+  }
 }
 
 module.exports = AppointmentController;
