@@ -7,12 +7,13 @@ class AppointmentController {
   async store({ request, response, auth }) {
     const { plan_id } = request.all();
 
-    const { hour, title } = request.all();
+    const { hour, title, user_id } = request.all();
 
     const createAppointment = async () =>
       await Appointment.create({
         title,
         plan_id,
+        user_id,
         hour: new Date(hour),
       });
 
