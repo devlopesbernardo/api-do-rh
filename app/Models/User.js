@@ -37,6 +37,9 @@ class User extends Model {
   plans() {
     return this.hasMany("App/Models/Plan");
   }
+  user() {
+    return this.hasMany("App/Models/Appointments");
+  }
 }
 
 module.exports = User;

@@ -39,3 +39,8 @@ Route.put("/plan/editar", "PlanController.updatePlan");
 Route.get("/plan/listar-pendentes", "PlanController.listPendingPlans");
 
 Route.put("/plan/test/:plan_id", "FileController.editCurriculum");
+
+Route.post(
+  "/admin/buscar-user-marcacao",
+  "AdminController.fetchDataFromAppointment"
+);
