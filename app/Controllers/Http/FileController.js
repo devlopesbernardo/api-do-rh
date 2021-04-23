@@ -40,6 +40,12 @@ class FileController {
       console.log(e);
     }
   }
+
+  async findFileFromPlan({ request, response }) {
+    const { plan_id } = await request.all();
+
+    const file = await File.query().where();
+  }
 }
 
 module.exports = FileController;

@@ -15,6 +15,7 @@ class PlanController {
         links,
         user_comments,
         pending,
+        reviewed,
       } = await request.all();
 
       const create = await Plan.create({
@@ -22,6 +23,7 @@ class PlanController {
         plan_name,
         plan_id,
         pending,
+        reviewed,
         plan_status: "Em andamento",
         links,
         user_comments,
