@@ -44,3 +44,5 @@ Route.post(
   "/admin/buscar-user-marcacao",
   "AdminController.fetchDataFromAppointment"
 );
+
+Route.post("/admin/responder", "AdminController.forwardAnswer");
